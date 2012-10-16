@@ -37,7 +37,7 @@
             
             img.onload = function() {
                 $('#canvas').on('mousemove', function(ev) {
-                    ctx.drawImage(img, (ev.pageX-(img.width/2)), (ev.pageY-(img.height/2)), img.width, img.height);
+                    ctx.drawImage(img, (ev.pageX-((img.width/2)+modSize/2)), (ev.pageY-((img.height/2)+modSize/2)), img.width+modSize, img.height+modSize);
                     modSize++;
                 });
             };
