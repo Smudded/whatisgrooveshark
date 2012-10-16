@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+<title>What is Grooveshark?</title>
+<style type="text/css">
+    html, body {margin:0; padding: 0; height: 100%; width: 100%;}
+    #canvas {position: absolute; top: 0; left: 0; z-index: 20;}
+    #logo {position: absolute; height: 100%; display: block; margin: 0 auto; z-index: 10;}
+</style>
+</head>
+
+<html>
+    
+<body>
+    
+    <img id="logo" src="gslogo.png" />
+    
+    <canvas id="canvas"></canvas>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        
+            var $canvas = $('#canvas'),
+                canvas = document.getElementById('canvas'),
+                ctx = canvas.getContext('2d'),
+                img = new Image(),
+                modSize = 0;
+                
+            var resizeCanvas = function() {
+                $('#logo').css('left', $(window).width()/2 - $('#logo').width()/2);
+                canvas.height = $(window).height();
+                canvas.width = $(window).width();
+            }
+            
+            $(window).resize(resizeCanvas);
+            resizeCanvas();
+            
+            img.onload = function() {
+                $('#canvas').on('mousemove', function(ev) {
+                    ctx.drawImage(img, (ev.pageX-(img.width/2)), (ev.pageY-(img.height/2)), img.width, img.height);
+                    modSize++;
+                });
+            };
+            
+            img.src = 'dustin.png';
+            
+        });
+    </script>
+    
+</body>
+    
+</html>
